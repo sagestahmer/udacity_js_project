@@ -37,7 +37,6 @@ const myHeader = document.getElementsByClassName('page__header')[0];
 // count the number of elements of a certain type in the document
 const countElement = (elementType) => {
     let x = document.getElementsByTagName(elementType).length;
-
     return x;
 }
 
@@ -94,29 +93,29 @@ for (let i = 0; i < numberOfSections; i++) {
 // Select active section based on location within viewport
 addEventListener('scroll', () => {
     // loop through each section and pull out top
-        let sectionTops = [];
+    let sectionTops = [];
     
-        for (let x = 0; x < numberOfSections; x++) {
-            let currentSection = document.getElementsByTagName('section')[x]
-            let currentPositionValue = currentSection.getBoundingClientRect();
-            let currentTop = currentPositionValue.top;
-            sectionTops.push(currentTop);
-        }
+    for (let x = 0; x < numberOfSections; x++) {
+        let currentSection = document.getElementsByTagName('section')[x]
+        let currentPositionValue = currentSection.getBoundingClientRect();
+        let currentTop = currentPositionValue.top;
+        sectionTops.push(currentTop);
+    }
     
-        // loop through each section top value and if it is between 10 and 100, assign it to active and remove the active class from any other section that has a class assigned
-        for (let y = 0; y < sectionTops.length; y++) {
-            if (sectionTops[y] > 0 && sectionTops[y] < 200) {
-                document.getElementsByTagName('section')[y].classList.add('active-section');
-                // Remove active-section class from previous section
-                for (let n = 0; n < numberOfSections; n++) {
-                    if (n !== y && document.getElementsByTagName('section')[n] !== null) {
-                        document.getElementsByTagName('section')[n].classList.remove('active-section');
-                    }
+    // loop through each section top value and if it is between 10 and 100, assign it to active and remove the active class from any other section that has a class assigned
+    for (let y = 0; y < sectionTops.length; y++) {
+        if (sectionTops[y] > 0 && sectionTops[y] < 200) {
+            document.getElementsByTagName('section')[y].classList.add('active-section');
+            // Remove active-section class from previous section
+            for (let n = 0; n < numberOfSections; n++) {
+                if (n !== y && document.getElementsByTagName('section')[n] !== null) {
+                    document.getElementsByTagName('section')[n].classList.remove('active-section');
                 }
             }
         }
+    }
     
-    });
+});
 
 // Scroll to section on link click
 
@@ -145,8 +144,8 @@ window.addEventListener('scroll', function() {
         clearTimeout(timer);        
     }
     timer = setTimeout(function() {
-          // do something
-          myHeader.style.display = "none";
+        // do something
+        myHeader.style.display = "none";
     }, 3000);
 });
 
