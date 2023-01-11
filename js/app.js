@@ -105,13 +105,21 @@ addEventListener('scroll', () => {
     // loop through each section top value and if it is between 10 and 100, assign it to active and remove the active class from any other section that has a class assigned
     for (let y = 0; y < sectionTops.length; y++) {
         if (sectionTops[y] > 0 && sectionTops[y] < 200) {
-            document.getElementsByTagName('section')[y].classList.add('active-section');
-            // Remove active-section class from previous section
+        
             for (let n = 0; n < numberOfSections; n++) {
+                // Remove active-section class from previous section
                 if (n !== y && document.getElementsByTagName('section')[n] !== null) {
                     document.getElementsByTagName('section')[n].classList.remove('active-section');
                 }
+                // Remove active-header class from previous section
+                if (n !== y && document.getElementsByTagName('a')[n] !== null) {
+                    document.getElementsByTagName('a')[n].classList.remove('active-header');
+                }
             }
+            // add active flag to new active section
+            document.getElementsByTagName('section')[y].classList.add('active-section');
+            // add active flag to new active header
+            document.getElementsByTagName('a')[y].classList.add('active-header');
         }
     }
     
@@ -138,7 +146,7 @@ navAnchors.forEach(function(a, index) {
 });
 
 // hide header is user stops scrolling
-var timer = null;
+let timer = null;
 window.addEventListener('scroll', function() {
     if(timer !== null) {
         clearTimeout(timer);        
